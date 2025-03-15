@@ -13,7 +13,7 @@ const useGetAllPost = () => {
         const res = await axios.get(`${API_URL}/post/all`, {
           withCredentials: true,
         });
-        if (res.data.success) {
+        if (res?.data.success) {
           dispatch(setPosts(res.data.posts));
         }
       } catch (err) {

@@ -7,9 +7,9 @@ const Homefeed = ({feed}) => {
     <div className="flex-1 my-8 flex flex-col items-center pl-[20%]">
       {
         feed.map((item) => {
-           if(item.image){
+           if(item?.image){
               return <Posts key={item._id} post={item} />
-           } else if (item.video){
+           } else if (item?.video){
               return <Reels key={item._id} reel={item} />
            }
            return null;
