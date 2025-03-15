@@ -8,7 +8,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
    cors:{
-        origin: "https://snapi-fy-soumens-projects-b3e0aae5.vercel.app",
+        origin: "https://snapi-fy.vercel.app",
         methods: ["GET", "POST"]
    }
 });
