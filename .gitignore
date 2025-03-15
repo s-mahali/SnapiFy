@@ -1,0 +1,19 @@
+#node.js
+node_modules/
+npm-debug.log
+
+#environment variables
+.env
+
+#build files
+dist/
+build/
+
+#backend specific
+backend/.env
+backend/node_modules/
+
+#frontend specific
+frontend/.env
+frontend/node_modules/
+frontend/build/

@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%; /* Light theme background */
+    --foreground: 240 10% 3.9%; /* Light theme text */
+    --primary: 240 5.9% 10%; /* Light theme primary */
+    --primary-foreground: 0 0% 98%; /* Light theme primary text */
+    --border: 240 5.9% 90%; /* Light theme border */
+    --input: 240 5.9% 90%; /* Light theme input */
+    --ring: 240 5.9% 10%; /* Light theme ring */
+    --radius: 0.5rem; /* Border radius */
+  }
+  
+  .dark {
+    --background: 0 0% 10%; /* True black: #181818 */
+    --foreground: 210 40% 98%; /* Improved foreground for better readability */
+    --card: 0 0% 10%; /* Match background */
+    --card-foreground: 210 40% 98%; /* Match foreground */
+    --popover: 0 0% 10%; /* Match background */
+    --popover-foreground: 210 40% 98%; /* Match foreground */
+    --primary: 339 83% 48%; /* #db1a59 - keeping your primary color */
+    --primary-foreground: 210 40% 98%; /* Light text on primary background */
+    --secondary: 215 25% 27%; /* Complementary to primary */
+    --secondary-foreground: 210 40% 98%; /* Light text on secondary */
+    --muted: 215 28% 17%; /* Darker muted background */
+    --muted-foreground: 217 33% 70%; /* Readable muted text */
+    --accent: 215 25% 27%; /* Match secondary for consistency */
+    --accent-foreground: 210 40% 98%; /* Light text on accent */
+    --destructive: 0 62% 30%; /* Slightly adjusted destructive */
+    --destructive-foreground: 210 40% 98%; /* Light text on destructive */
+    --border: 215 28% 17%; /* Subtle borders */
+    --input: 215 28% 17%; /* Match border */
+    --ring: 339 83% 48%; /* Match primary for focus rings */
+   
+    /* Chart colors with better contrast and harmony */
+    --chart-1: 219 70% 60%; /* Based on your primary */
+    --chart-2: 260 60% 60%; /* Purple */
+    --chart-3: 340 70% 60%; /* Pink */
+    --chart-4: 180 70% 50%; /* Teal */
+    --chart-5: 40 80% 60%;  /* Amber */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border; /* Apply border color */
+  }
+  body {
+    @apply bg-background text-foreground; /* Apply background and text color */
+  }
+}
