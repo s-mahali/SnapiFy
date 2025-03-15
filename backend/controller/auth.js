@@ -1,8 +1,8 @@
 import User from "../models/user.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken"
-import dotenv from "dotenv";
-dotenv.config();
+// import dotenv from "dotenv";
+// dotenv.config();
 
 
 
@@ -42,6 +42,7 @@ export const login = async(req, res) => {
             return res.status(401).json({ message: "Incorrect email or password", success: false });
         }
         const token =  jwt.sign({userId: user._id}, process.env.JWT_SECRET,{expiresIn: '3d'});
+        console.log("env", process.env.JWT_SECRET);
          
         const populatedPosts = await User.findById(user._id).populate({
             path: 'posts',

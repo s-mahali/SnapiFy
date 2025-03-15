@@ -1,4 +1,4 @@
-import dotenv from "dotenv";
+import  "dotenv/config";
 import express, { urlencoded } from "express";
 import connectDB from "./utils/db.js";
 import cors from "cors";
@@ -9,10 +9,11 @@ import messageRoutes from "./routes/messageRoutes.js"
 import { app,server,io } from "./socket/socket.js";
 import { reelsRoute } from "./routes/reelsRoute.js";
 
-dotenv.config();
+
 
 
 const PORT = process.env.PORT || 3000;
+
 
 app.get("/", (req, res) => {
   return res.status(200).json({
