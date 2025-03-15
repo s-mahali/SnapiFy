@@ -1,5 +1,5 @@
 import CreatePost from "@/components/posts/CreatePost";
-import CreateReel from "@/components/reels/createReel";
+import CreateReel from "../components/reels/CreateReel";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader} from "@/components/ui/dialog";
 import React, { useState } from "react";

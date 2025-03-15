@@ -18,7 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setAuthUser, setStatus } from "../redux/slicers/authSlice";
 import { Popover, PopoverTrigger, PopoverContent } from "./ui/popover";
 import { setLikeDefault } from "@/redux/slicers/rtnSlice";
-import CreateDialog from "@/utils/CreateDialog";
+import CreateDialog from "../utils/CreateDialog";
 
 
 
