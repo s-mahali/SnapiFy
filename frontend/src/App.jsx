@@ -15,6 +15,7 @@ import { setLikeNotification } from "./redux/slicers/rtnSlice";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import Reels from "./pages/Reels";
 
+
 const browserRouter = createBrowserRouter([
   {
     path: "/",
@@ -65,7 +66,7 @@ const App = () => {
   const {socket} = useSelector(store => store.socketio);
   useEffect(() => {
     if (user) {
-      const socketio = io("http://localhost:3000", {
+      const socketio = io("https://snapify-mn87.onrender.com", {
         query: {
           userId: user._id,
         },
