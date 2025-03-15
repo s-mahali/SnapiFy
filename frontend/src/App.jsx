@@ -66,7 +66,7 @@ const App = () => {
   const {socket} = useSelector(store => store.socketio);
   useEffect(() => {
     if (user) {
-      const socketio = io("https://snapify-mn87.onrender.com/api/v1", {
+      const socketio = io("https://snapify-mn87.onrender.com", {
         query: {
           userId: user._id,
         },

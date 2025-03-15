@@ -129,13 +129,8 @@ function ProfileHeader() {
                 {profile?.bio || "bio here....."}
               </p>
               <div className="flex flex-col text-start">
-                <span className="text-xs md:text-sm">
-                  Learning backend development
-                </span>
-                <span className="text-xs md:text-sm">Mastering mern stack</span>
-                <span className="text-xs md:text-sm">
-                  More you practice better you become{" "}
-                </span>
+               <span className="text-xs md:text-sm">{" "}</span>
+                
               </div>
             </div>
           </div>
