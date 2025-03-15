@@ -1,16 +1,15 @@
 import { API_URL } from "@/api";
 import { readFileAsDataURI } from "@/lib/utils";
-import {  addReel } from "@/redux/slicers/reelSlice";
+import { addReel } from "@/redux/slicers/reelSlice";
 import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DialogHeader, DialogTitle } from "../ui/dialog";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { Loader2 } from "lucide-react";
+import { Loader2, X } from "lucide-react";
 import { toast } from "sonner";
 import axios from "axios";
-
 
 const CreateReel = ({ setOpen }) => {
   const [file, setFile] = useState(null);
@@ -20,6 +19,7 @@ const CreateReel = ({ setOpen }) => {
   const videoRef = useRef();
   const userData = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
+  
   const fileChangeHandler = async (e) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -27,6 +27,11 @@ const CreateReel = ({ setOpen }) => {
       const dataURI = await readFileAsDataURI(file);
       setVideoPreview(dataURI);
     }
+  };
+
+  const removeVideo = () => {
+    setVideoPreview(null);
+    setFile(null);
   };
 
   const createReelHandler = async () => {
@@ -66,68 +71,87 @@ const CreateReel = ({ setOpen }) => {
   };
 
   return (
-    <>
+    <div className="max-w-lg mx-auto">
+      <DialogHeader className="space-y-1.5 text-center font-semibold text-lg sm:text-left mb-4">
+        Create new Reel
+      </DialogHeader>
+      <DialogTitle className="text-md text-slate-400 mb-3">
+        Share a video with your followers
+      </DialogTitle>
       
-        <DialogHeader className="space-y-1.5 text-center font-semibold text-lg sm:text-left">
-          Create new Reel
-        </DialogHeader>
-        <DialogTitle className="text-md text-slate-400">
-          Share a video with your followers
-        </DialogTitle>
-        <div className="flex items-center gap-2">
-          <Avatar>
-            <AvatarImage src={userData?.profilePic} alt={userData?.username} />
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
-          <div>
-            <h1 className="font-semibold text-xs">{userData?.username}</h1>
-            <span className="text-xs text-gray-500">{userData?.bio} ...</span>
-          </div>
+      <div className="flex items-center gap-3 mb-4">
+        <Avatar>
+          <AvatarImage src={userData?.profilePic} alt={userData?.username} />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
+        <div>
+          <h1 className="font-semibold text-xs">{userData?.username}</h1>
+          <span className="text-xs text-gray-500">
+            {userData?.bio ? `${userData.bio.substring(0, 30)}...` : ""}
+          </span>
         </div>
-        <Textarea
-          value={caption}
-          onChange={(e) => setCaption(e.target.value)}
-          className="focus-visible:ring-transparent border-2 border-slate-500"
-          placeholder="add a caption"
-        />
+      </div>
+      
+      <Textarea
+        value={caption}
+        onChange={(e) => setCaption(e.target.value)}
+        className="focus-visible:ring-transparent border border-slate-500 mb-4"
+        placeholder="Add a caption"
+      />
 
-        {videoPreview && (
-          <div className="w-full h-[300px] flex items-center justify-center">
-            <video
-              src={videoPreview}
-              className="w-full h-full object-cover rounded-md"
-              controls
-            />
-          </div>
-        )}
+      {videoPreview && (
+        <div className="relative mb-4 max-h-[220px] overflow-hidden rounded-md">
+          <button 
+            onClick={removeVideo}
+            className="absolute top-2 right-2 bg-black/70 p-1 rounded-full hover:bg-black/90 z-10"
+          >
+            <X size={16} className="text-white" />
+          </button>
+          <video
+            src={videoPreview}
+            className="w-full rounded-md"
+            style={{ maxHeight: "220px" }}
+            controls
+          />
+        </div>
+      )}
 
-        <input
-          ref={videoRef}
-          type="file"
-          accept="video/*"
-          className="hidden"
-          onChange={fileChangeHandler}
-        />
+      <input
+        ref={videoRef}
+        type="file"
+        accept="video/*"
+        className="hidden"
+        onChange={fileChangeHandler}
+      />
+      
+      <div className="flex items-center justify-between mt-4">
         <Button
-          className="w-fit mx-auto bg-[#db1a59] hover:bg-[#db1a59]/90 duration-150"
+          className="bg-[#db1a59] hover:bg-[#db1a59]/90 duration-150"
           onClick={() => videoRef.current.click()}
+          size="sm"
         >
-          Select Video from device{" "}
+          Select video
         </Button>
-
-        {videoPreview &&
-          (loading ? (
-            <Button disabled>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin bg-[#db1a59] hover:bg-[#db1a59]/90 duration 150" />
+        
+        {videoPreview && (
+          loading ? (
+            <Button disabled className="bg-[#db1a59] hover:bg-[#db1a59]/90 duration-150">
+              <Loader2 className="h-4 w-4 animate-spin mr-2" />
               Uploading...
             </Button>
           ) : (
-            <Button onClick={createReelHandler} type="submit" className="bg-[#db1a59] hover:bg-[#db1a59]/90 duration-150">
+            <Button 
+              onClick={createReelHandler} 
+              type="submit" 
+              className="bg-[#db1a59] hover:bg-[#db1a59]/90 duration-150"
+              disabled={!caption.trim()}
+            >
               Post Reel
             </Button>
-          ))}
-      
-    </>
+          )
+        )}
+      </div>
+    </div>
   );
 };
 

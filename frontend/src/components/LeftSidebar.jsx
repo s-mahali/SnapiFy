@@ -54,14 +54,8 @@ const LeftSidebar = () => {
       icon: <Home />,
       text: "Home",
     },
-    {
-      icon: <Search />,
-      text: "Search",
-    },
-    {
-      icon: <TrendingUp />,
-      text: "Explore",
-    },
+    
+    
     {
       icon: <FaFacebookMessenger size={22} />,
       text: "Messages",
@@ -139,7 +133,7 @@ const LeftSidebar = () => {
                 className="flex items-center gap-3 relative text-slate-100 hover:bg-gray-700 cursor-pointer rounded-lg p-3 my-3"
               >
                 {item.icon}
-                <span className="hidden lg:block text-slate-100">{item.text}</span>
+                <span className="hidden lg:block text-slate-100 text-sm">{item.text}</span>
                 {item.text === "Notifications" &&
                   likeNotification.length > 0 &&
                   showNotification && (
