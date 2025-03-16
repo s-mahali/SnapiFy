@@ -63,7 +63,7 @@ export const getSuggestedUsers = async (req, res) => {
   try {
     const suggestedUsers = await User.find({ _id: { $ne: req.id } })
       .select("-password")
-      .limit(5);
+      .limit(25);
     if (!suggestedUsers) {
       return res
         .status(404)
