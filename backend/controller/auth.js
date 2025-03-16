@@ -13,6 +13,9 @@ export const register = async(req, res) => {
        if(!username || !email || !password){
            return res.status(401).json({ message: "All fields are required", success: false });
        }
+       if(email.indexOf("@") === -1 || email.indexOf(".") === -1){
+           return res.status(401).json({ message: "Invalid email", success: false });
+       }
        const userExists = await User.findOne({ email });
        if(userExists){
            return res.status(401).json({ message: "User already exists", success: false });
@@ -32,6 +35,7 @@ export const login = async(req, res) => {
         if(!email || !password){
             return res.status(401).json({ message: "All fields are required", success: false });
         }
+        
         let user = await User.findOne({ email });
         if(!user){
             return res.status(401).json({ message: "user not found with this email", success: false });

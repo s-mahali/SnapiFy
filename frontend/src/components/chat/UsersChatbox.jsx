@@ -20,6 +20,9 @@ const UsersChatbox = () => {
   const dispatch = useDispatch();
   const scrollAreaRef = useRef(null);
   const messagesEndRef = useRef(null);
+  const { onlineUsers } = useSelector(store => store.chat);
+  const isOnline = onlineUsers.includes(targetUser?._id);
+
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -69,7 +72,9 @@ const UsersChatbox = () => {
           <h2 className="text-sm font-medium text-white">
             {targetUser?.username}
           </h2>
-          <p className="text-xs text-zinc-400">active recently </p>
+          {
+            isOnline ? <span className="text-xs text-green-500">online</span> : <span className="text-xs text-slate-500">active recently</span>
+          }
         </div>
       </div>
 
