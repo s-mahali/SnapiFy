@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(urlencoded({ extended: true }));
 const corsOptions = {
-    origin: "https://snapi-fy.vercel.app",
+    origin: "https://www.snapifyy.me",
     credentials: true,
 }
 app.use(cors(corsOptions));
