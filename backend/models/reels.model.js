@@ -35,7 +35,7 @@ const reelSchema = new mongoose.Schema({
         
     
 
-},{timestamps: true});
+},{timestamps: true, autoIndex: true});
 
 const Reel = mongoose.model("Reel", reelSchema);
 

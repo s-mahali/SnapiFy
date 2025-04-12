@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 import userRoutes from "./routes/userRoutes.js";
 import postRoutes from "./routes/postRoutes.js";
 import messageRoutes from "./routes/messageRoutes.js"
-import { app,server,io } from "./socket/socket.js";
+import { app,server } from "./socket/socket.js";
 import { reelsRoute } from "./routes/reelsRoute.js";
 
 
@@ -15,7 +15,7 @@ import { reelsRoute } from "./routes/reelsRoute.js";
 const PORT = process.env.PORT || 3000;
 
 
-app.get("/", (req, res) => {
+app.get("/", (_, res) => {
   return res.status(200).json({
     message: "server is live",
     success: true
