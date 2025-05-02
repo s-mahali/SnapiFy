@@ -46,7 +46,7 @@ export const login = async(req, res) => {
             return res.status(401).json({ message: "Incorrect email or password", success: false });
         }
         const token =  jwt.sign({userId: user._id}, process.env.JWT_SECRET,{expiresIn: '3d'});
-        console.log("env", process.env.JWT_SECRET);
+        
          
         const populatedPosts = await User.findById(user._id).populate({
             path: 'posts',
